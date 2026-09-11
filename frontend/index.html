@@ -1,1 +1,81 @@
-<!doctype html><html><head><meta charset='utf-8'/><meta name='viewport' content='width=device-width,initial-scale=1'/><title>Accessibility Analyzer</title></head><body><div id='root'></div><script type='module' src='/src/main.jsx'></script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Title Tag (30-60 chars for SEO) -->
+    <title>AccessiAnalyzer - WCAG 2.2 AA Accessibility Scanner</title>
+    
+    <!-- Meta Description (120-160 chars for SEO) -->
+    <meta name="description" content="AccessiAnalyzer is an AI-powered WCAG 2.2 AA web accessibility auditing tool that scans websites for ADA compliance, color contrast, and SEO optimization." />
+    
+    <!-- Canonical Tag & International Hreflang -->
+    <link rel="canonical" href="https://accessibility-analyzer-i6h5.vercel.app/" />
+    <link rel="alternate" hreflang="en" href="https://accessibility-analyzer-i6h5.vercel.app/" />
+    <link rel="alternate" hreflang="x-default" href="https://accessibility-analyzer-i6h5.vercel.app/" />
+    
+    <!-- Open Graph Social Metadata -->
+    <meta property="og:title" content="AccessiAnalyzer - WCAG 2.2 AA Accessibility Scanner" />
+    <meta property="og:description" content="Automated AI-powered web accessibility auditing tool. Scan websites for WCAG 2.2 AA compliance, color contrast, and SEO optimization." />
+    <meta property="og:image" content="https://accessibility-analyzer-i6h5.vercel.app/mockup_score.png" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Theme Color & Mobile -->
+    <meta name="theme-color" content="#0047ff" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%230047ff'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z'/></svg>" />
+    
+    <!-- Keyboard Focus Ring Styles for WCAG 2.4.7 -->
+    <style>
+      a:focus-visible, button:focus-visible, input:focus-visible {
+        outline: 3px solid #0047ff !important;
+        outline-offset: 2px !important;
+      }
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+    </style>
+
+    <!-- JSON-LD Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "AccessiAnalyzer",
+      "url": "https://accessibility-analyzer-i6h5.vercel.app/",
+      "description": "AI-powered web accessibility auditing tool for WCAG 2.2 AA compliance.",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "All"
+    }
+    </script>
+  </head>
+  <body>
+    <!-- Skip to main content link for screen reader and keyboard accessibility -->
+    <a href="#main" className="sr-only focus:not-sr-only">Skip to main content</a>
+    
+    <!-- Default H1 & H2 headings for static crawlers -->
+    <h1 className="sr-only">AccessiAnalyzer - AI Web Accessibility Scanner & WCAG 2.2 AA Compliance Engine</h1>
+    <h2 className="sr-only">Automated WCAG 2.2 Audits and SEO Optimization Solutions</h2>
+
+    <div id="root"></div>
+
+    <noscript>
+      <div style="padding: 20px; font-family: sans-serif;">
+        <h2>AccessiAnalyzer Web Accessibility Auditing Tool</h2>
+        <p>AccessiAnalyzer is an expert-driven, AI-powered web accessibility auditing platform designed for WCAG 2.2 AA legal compliance, color contrast remediation, ARIA validation, and SEO performance optimization.</p>
+      </div>
+    </noscript>
+
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
