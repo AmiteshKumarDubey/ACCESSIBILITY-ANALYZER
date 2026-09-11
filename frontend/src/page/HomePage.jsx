@@ -293,12 +293,20 @@ export default function Home() {
         </div>
       )}
 
+      {/* Top Banner (Matching Accessibe screenshot #2) */}
+      <div className="bg-[#0b172a] text-white text-xs py-2.5 px-4 text-center font-medium flex items-center justify-center gap-3 border-b border-white/10">
+        <span>AI lets you scale. But what about accessibility compliance?</span>
+        <button onClick={scrollToScanner} className="underline font-bold text-yellow-400 hover:text-yellow-300 tracking-wider">
+          READ REPORTS & SCAN
+        </button>
+      </div>
+
       {/* Header & Sticky Navbar */}
       <header className="sticky top-0 z-50 bg-white shadow-[0_4px_20px_rgb(0,0,0,0.03)] border-b border-gray-100">
-        <nav className="flex items-center justify-between px-6 py-4 max-w-7xl mx-auto" aria-label="Main Navigation">
+        <nav className="flex items-center justify-between px-6 md:px-10 py-4 w-full" aria-label="Main Navigation">
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="flex items-center text-xl font-bold tracking-tight text-[#0a1024]">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#0047ff] mr-1" aria-hidden="true">
+            <div className="flex items-center text-xl font-black tracking-tight text-[#0a1024]">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#0047ff] mr-1.5" aria-hidden="true">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
               </svg>
               accessiAnalyzer
