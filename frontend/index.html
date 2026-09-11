@@ -34,15 +34,15 @@
         outline-offset: 2px !important;
       }
       .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        padding: 0;
-        margin: -1px;
-        overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        white-space: nowrap;
-        border-width: 0;
+        position: absolute !important;
+        width: 1px !important;
+        height: 1px !important;
+        padding: 0 !important;
+        margin: -1px !important;
+        overflow: hidden !important;
+        clip: rect(0, 0, 0, 0) !important;
+        white-space: nowrap !important;
+        border-width: 0 !important;
       }
     </style>
 
@@ -61,11 +61,11 @@
   </head>
   <body>
     <!-- Skip to main content link for screen reader and keyboard accessibility -->
-    <a href="#main" className="sr-only focus:not-sr-only">Skip to main content</a>
+    <a href="#main" class="sr-only focus:not-sr-only">Skip to main content</a>
     
     <!-- Default H1 & H2 headings for static crawlers -->
-    <h1 className="sr-only">AccessiAnalyzer - AI Web Accessibility Scanner & WCAG 2.2 AA Compliance Engine</h1>
-    <h2 className="sr-only">Automated WCAG 2.2 Audits and SEO Optimization Solutions</h2>
+    <h1 class="sr-only">AccessiAnalyzer - AI Web Accessibility Scanner & WCAG 2.2 AA Compliance Engine</h1>
+    <h2 class="sr-only">Automated WCAG 2.2 Audits and SEO Optimization Solutions</h2>
 
     <div id="root"></div>
 
