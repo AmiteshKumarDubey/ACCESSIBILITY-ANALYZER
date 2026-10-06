@@ -4,7 +4,7 @@ import LandingHeader from '../components/landing/LandingHeader';
 import HeroInspection from '../components/landing/HeroInspection';
 import ScanPipeline from '../components/landing/ScanPipeline';
 import RuleExplorer from '../components/landing/RuleExplorer';
-import ScoringPlayground from '../components/landing/ScoringPlayground';
+import ScoreGuide from '../components/landing/ScoreGuide';
 import SampleReportPreview from '../components/landing/SampleReportPreview';
 import TargetAudience from '../components/landing/TargetAudience';
 import UnderTheHood from '../components/landing/UnderTheHood';
@@ -16,7 +16,6 @@ export default function HomePage() {
   const [errorMsg, setErrorMsg] = useState('');
   const navigate = useNavigate();
 
-  // Exact submit handler & API call reusing current audit pipeline
   async function runAudit(targetUrl) {
     if (!targetUrl) return;
     setLoading(true);
@@ -60,23 +59,15 @@ export default function HomePage() {
   };
 
   return (
-    <div className="landing-dark-theme min-h-screen bg-[#0B0F1A] text-[#F4F6FB] font-['Plus_Jakarta_Sans',sans-serif] selection:bg-[#FFB800] selection:text-[#0B0F1A] overflow-x-hidden">
+    <div className="min-h-screen bg-[var(--bg-main)] text-[var(--text-main)] transition-colors duration-200 overflow-x-hidden">
       
-      {/* Skip to main content link for keyboard accessibility */}
-      <a 
-        href="#main-content" 
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:bg-[#FFB800] focus:text-[#0B0F1A] focus:px-4 focus:py-2.5 focus:z-[9999] focus:rounded-lg focus:font-bold border border-white"
-      >
-        Skip to main content
-      </a>
-
       {/* 1. Header */}
       <LandingHeader
         onScanClick={handleFocusHeroInput}
         onNavScroll={handleNavScroll}
       />
 
-      <main id="main-content" className="space-y-8">
+      <main id="main" className="space-y-8">
         {/* 2. Hero Section */}
         <HeroInspection
           onSubmitScan={runAudit}
@@ -90,8 +81,8 @@ export default function HomePage() {
         {/* 4. Rule Explorer */}
         <RuleExplorer />
 
-        {/* 5. Scoring Playground */}
-        <ScoringPlayground />
+        {/* 5. Score Guide */}
+        <ScoreGuide />
 
         {/* 6. Sample Report Preview */}
         <SampleReportPreview />
@@ -99,7 +90,7 @@ export default function HomePage() {
         {/* 7. Target Audience */}
         <TargetAudience />
 
-        {/* 8. Under The Hood */}
+        {/* 8. Limitations Note */}
         <UnderTheHood />
 
         {/* 9. FAQ Accordion */}

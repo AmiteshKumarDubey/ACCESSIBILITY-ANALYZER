@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://accessibility-analyzer-i6h5.vercel.app/sitemap.xml

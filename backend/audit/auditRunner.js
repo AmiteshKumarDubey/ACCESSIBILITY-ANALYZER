@@ -8,6 +8,8 @@ const suggestionEngine = require('../suggestions/suggestionEngine');
 
 const URL_MODULE = require('url');
 
+const dns = require('dns').promises;
+
 function isPrivateOrLoopbackHost(hostname) {
   if (!hostname) return true;
   const host = hostname.toLowerCase().trim();
@@ -37,38 +39,52 @@ function isPrivateOrLoopbackHost(hostname) {
   }
 
   // IPv6 checks
-  if (host.startsWith('fe80:') || host.startsWith('fc00:') || host.startsWith('fd00:')) {
+  if (host.startsWith('fe80:') || host.startsWith('fc00:') || host.startsWith('fd00:') || host === '::1') {
     return true;
   }
 
   return false;
 }
 
-module.exports = async function runAudit(url) {
-  console.log('➡️ runAudit started for:', url);
+async function verifyDNSHost(hostname) {
+  if (isPrivateOrLoopbackHost(hostname)) return false;
+  try {
+    const addresses = await dns.lookup(hostname, { all: true });
+    for (const addr of addresses) {
+      if (isPrivateOrLoopbackHost(addr.address)) {
+        return false;
+      }
+    }
+  } catch (err) {
+    return false; // If DNS lookup fails, treat as unreachable
+  }
+  return true;
+}
 
+module.exports = async function runAudit(url) {
   let parsedUrl;
   try {
     parsedUrl = new URL_MODULE.URL(url);
   } catch (_) {
-    throw new Error('Invalid URL format. Please provide a full URL like https://example.com');
+    throw new Error('Invalid URL format. Please provide a valid web URL (e.g., https://example.com)');
   }
 
   if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') {
     throw new Error('Only http:// and https:// web URLs are supported.');
   }
 
-  if (isPrivateOrLoopbackHost(parsedUrl.hostname)) {
-    throw new Error('Scanning localhost, private IP ranges, or internal network addresses is blocked for security.');
+  const isValidHost = await verifyDNSHost(parsedUrl.hostname);
+  if (!isValidHost) {
+    throw new Error('Scanning localhost, private IP ranges, or unreachable hostnames is blocked for security.');
   }
 
   const resp = await axios.get(url, {
     headers: {
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/120 Safari/537.36'
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
     },
-    timeout: 20000,
+    timeout: 15000,
     maxContentLength: 5 * 1024 * 1024, // Limit response to 5MB max
-    maxRedirects: 5
+    maxRedirects: 3
   });
   const html = resp.data;
   console.log('➡️ fetched HTML length:', html.length);
