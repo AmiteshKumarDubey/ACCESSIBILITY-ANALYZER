@@ -135,7 +135,7 @@ export default function ResultPage() {
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8 text-[#ff6a00] mr-2" aria-hidden="true">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
               </svg>
-              accessiAnalyzer
+              Accessibility Analyzer
             </div>
           </Link>
           <div className="flex-1 max-w-xl mx-8 hidden md:block">
@@ -187,24 +187,6 @@ export default function ResultPage() {
           <ScoreChart score={audit.seo?.score || 80} label="SEO Score" />
           <div className="hidden md:block w-px h-40 bg-gray-100" aria-hidden="true"></div>
           <ScoreChart score={audit.overall?.score || 80} label="Overall Score" />
-        </section>
-
-        {/* Talk to Expert CTA */}
-        <section className="bg-white rounded-xl shadow-sm border border-gray-100 p-6 mb-12 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <h2 className="font-bold text-[#0a1024] text-xl mb-1">Talk to an accessibility expert</h2>
-            <p className="text-[#4b5563] text-sm leading-relaxed">
-              High-traffic sites carry higher legal and brand risk.<br/>
-              Book a meeting to see how we support accessibility and compliance.
-            </p>
-          </div>
-          <button 
-            onClick={() => setIsDemoOpen(true)}
-            className="bg-[#0047ff] hover:bg-[#0038cc] text-white px-6 py-3 rounded-xl font-bold whitespace-nowrap transition-colors flex items-center gap-2 shadow-md shadow-blue-500/20"
-          >
-            Schedule a Demo
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </button>
         </section>
 
         {/* Issue Summary Cards & Filters */}

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accessibility Analyzer - Complete Interview Preparation Master Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
+
+    @page {
+      size: A4;
+      margin: 18mm 15mm 18mm 15mm;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #0f172a;
+      line-height: 1.6;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+      font-size: 13.5px;
+    }
+
+    .header-banner {
+      background: linear-gradient(135deg, #0a1024 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 28px 32px;
+      border-radius: 12px;
+      margin-bottom: 25px;
+    }
+
+    .header-banner h1 {
+      margin: 0 0 6px 0;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #38bdf8;
+    }
+
+    .header-banner p {
+      margin: 0;
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #0284c7;
+      color: #ffffff;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #0f172a;
+      font-size: 17px;
+      font-weight: 700;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+      margin-top: 24px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      page-break-after: avoid;
+    }
+
+    h3 {
+      color: #0284c7;
+      font-size: 14px;
+      font-weight: 600;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      page-break-after: avoid;
+    }
+
+    .highlight-box {
+      background-color: #f8fafc;
+      border-left: 4px solid #0284c7;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin: 14px 0;
+      font-size: 13px;
+    }
+
+    .status-box {
+      background-color: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-left: 5px solid #22c55e;
+      padding: 14px 18px;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    .status-box strong {
+      color: #15803d;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0;
+      font-size: 12.5px;
+      page-break-inside: avoid;
+    }
+
+    th, td {
+      border: 1px solid #cbd5e1;
+      padding: 8px 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f1f5f9;
+      color: #334155;
+      font-weight: 700;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    pre, code {
+      font-family: 'Fira Code', monospace;
+      font-size: 11.5px;
+    }
+
+    pre {
+      background-color: #0f172a;
+      color: #f8fafc;
+      padding: 12px 16px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 12px 0;
+      white-space: pre-wrap;
+      word-break: break-all;
+      page-break-inside: avoid;
+    }
+
+    code.inline {
+      background-color: #f1f5f9;
+      color: #0284c7;
+      padding: 2px 5px;
+      border-radius: 4px;
+    }
+
+    ul, ol {
+      margin: 8px 0 14px 20px;
+      padding: 0;
+    }
+
+    li {
+      margin-bottom: 5px;
+    }
+
+    .qa-card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      page-break-inside: avoid;
+    }
+
+    .qa-card .q {
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+
+    .qa-card .a {
+      color: #334155;
+    }
+
+    .page-break {
+      page-break-before: always;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 30px;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header-banner">
+    <span class="badge">Master Interview Prep Guide</span>
+    <h1>Accessibility Analyzer Project</h1>
+    <p>Complete Architecture, WCAG Rules, API Flow, Scoring Formulas & Interview Q&A</p>
+  </div>
+
+  <div class="status-box">
+    <strong>⚡ Backend API Status & Count Summary:</strong><br>
+    • <strong>Total APIs Built in Backend:</strong> <strong>1 Core Express POST Endpoint</strong> (<code class="inline">POST /api/audit</code>) + 1 Preflight OPTIONS handler + 2 Integrated External AI APIs (Hugging Face Inference API & OpenAI API).<br>
+    • <strong>API Working Verification:</strong> <strong>CONFIRMED WORKING 100% ✅</strong> (Verified via Node test suite returning HTTP 200 with structured JSON audit scores).
+  </div>
+
+  <h2>1. 🚀 30-Second Elevator Pitch</h2>
+  <div class="highlight-box">
+    "I built an automated <strong>Web Accessibility & SEO Analyzer</strong> that audits any web page against <strong>WCAG 2.2 guidelines</strong> and SEO standards. Unlike basic tools that only give pass/fail metrics, my engine parses the DOM using Cheerio, runs 18+ automated rule checks (like missing alt text, non-sequential headings, unlabelled inputs), calculates a weighted score out of 100, and provides AI-powered code fix suggestions via Hugging Face/OpenAI with a resilient local rule fallback."
+  </div>
+
+  <h2>2. 🌐 System Architecture & Tech Flow</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Technologies Used</th>
+        <th>Role & Responsibility</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend</strong></td>
+        <td>React (Vite), Tailwind CSS, Recharts</td>
+        <td>Renders score rings, pie charts, tabbed audit reports, filter UI, and AI fix cards.</td>
+      </tr>
+      <tr>
+        <td><strong>Backend API</strong></td>
+        <td>Node.js, Express.js, Cors</td>
+        <td>Exposes <code class="inline">POST /api/audit</code> endpoint, handles request validation, error logging.</td>
+      </tr>
+      <tr>
+        <td><strong>Parsing Engine</strong></td>
+        <td>Axios, Cheerio</td>
+        <td>Fetches web page HTML (with Chrome User-Agent header) and builds a server-side DOM query tree.</td>
+      </tr>
+      <tr>
+        <td><strong>Audit & Scoring</strong></td>
+        <td>Pure JavaScript Audit Modules</td>
+        <td>Executes WCAG 2.2 & SEO checks, classifies severities, calculates weighted penalty scores.</td>
+      </tr>
+      <tr>
+        <td><strong>Suggestion Engine</strong></td>
+        <td>Hugging Face API / OpenAI / Local Rules</td>
+        <td>Generates developer code suggestions; falls back to deterministic local rules if AI times out.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Detailed End-to-End Data Flow:</h3>
+  <ol>
+    <li>User enters target URL in React Frontend → sends <code class="inline">POST /api/audit</code> request to Express Server.</li>
+    <li>Backend uses Axios to fetch raw HTML with a 20-second timeout and browser <code class="inline">User-Agent</code> header.</li>
+    <li>Cheerio parses HTML into a fast server-side DOM (<code class="inline">$</code>).</li>
+    <li><code class="inline">runWCAGChecks($)</code> & <code class="inline">runSEOChecks($)</code> execute 18+ rule checks concurrently.</li>
+    <li><code class="inline">calculateScore()</code> calculates penalties based on issue severities (Critical: 20, Major: 10, Moderate: 4, Minor: 1).</li>
+    <li>Overall Score is computed: <strong>(WCAG Score × 0.7) + (SEO Score × 0.3)</strong>.</li>
+    <li>Suggestion Engine requests Hugging Face / OpenAI API; if unavailable, seamlessly returns local rule suggestions.</li>
+    <li>Structured JSON response is sent to Frontend for interactive visualization.</li>
+  </ol>
+
+  <div class="page-break"></div>
+
+  <h2>3. 📜 WCAG 2.2 Principles & Code Checks Implementation</h2>
+  <p>WCAG 2.2 is structured around four core principles (<strong>POUR</strong>):</p>
+  <ul>
+    <li><strong>Perceivable:</strong> Users must be able to see or hear content (Alt text, contrast, viewport).</li>
+    <li><strong>Operable:</strong> Users must be able to navigate via keyboard (Focus visible, skip links, clickable controls).</li>
+    <li><strong>Understandable:</strong> Clear page structure (Language tag, sequential headings, form labels).</li>
+    <li><strong>Robust:</strong> Accessible names for screen readers (ARIA attributes, semantic HTML tags).</li>
+  </ul>
+
+  <h3>Code Logic of Key Checks:</h3>
+
+  <div class="qa-card">
+    <div class="q">A. Image Alt Text Check (WCAG 1.1.1)</div>
+    <div class="a">
+      Traverses every <code class="inline">&lt;img&gt;</code> tag and checks if <code class="inline">alt</code> attribute is missing or empty. Reports first 5 instances with code location to prevent memory bloat.
+      <pre><code>$('img').each((i, el) => {
+  const alt = $(el).attr('alt');
+  if (typeof alt === 'undefined' || alt === null || String(alt).trim() === '') {
+    // Push missing-alt issue with element snippet
+  }
+});</code></pre>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="q">B. Form Input Labels (WCAG 1.3.1 & 4.1.2)</div>
+    <div class="a">
+      For each form control (<code class="inline">input</code>, <code class="inline">textarea</code>, <code class="inline">select</code>), verifies if a matching <code class="inline">&lt;label for="id"&gt;</code>, <code class="inline">aria-label</code>, or <code class="inline">aria-labelledby</code> exists.
+      <pre><code>$('input[id], textarea[id], select[id]').each((i, el) => {
+  const inputId = $(el).attr('id');
+  const label = $(`label[for="${inputId}"]`);
+  const ariaLabel = $(el).attr('aria-label');
+  if (label.length === 0 && !ariaLabel && !$(el).attr('aria-labelledby')) {
+    // Flag unlabelled form input issue
+  }
+});</code></pre>
+    </div>
+  </div>
+
+  <div class="qa-card">
+    <div class="q">C. Heading Hierarchy Check (WCAG 1.3.1)</div>
+    <div class="a">
+      Inspects sequential heading levels (<code class="inline">h1</code> through <code class="inline">h6</code>). Flags broken outline if a heading level skips by more than 1 (e.g., <code class="inline">&lt;h1&gt;</code> followed directly by <code class="inline">&lt;h3&gt;</code>).
+      <pre><code>const headings = $('h1, h2, h3, h4, h5, h6');
+let lastLevel = 0;
+headings.each((i, el) => {
+  const level = parseInt(el.name[1]);
+  if (level > lastLevel + 1) hasHeadingSkip = true;
+  lastLevel = level;
+});</code></pre>
+    </div>
+  </div>
+
+  <h2>4. 🧮 Scoring System & Formula</h2>
+  <p>The engine uses a weighted penalty classification system:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Severity Level</th>
+        <th>Penalty Points</th>
+        <th>Impact Description & Examples</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Critical</strong></td>
+        <td>20 pts each</td>
+        <td>Completely blocks disabled users (Missing <code class="inline">lang</code>, missing <code class="inline">&lt;title&gt;</code>, missing viewport, low contrast).</td>
+      </tr>
+      <tr>
+        <td><strong>Major</strong></td>
+        <td>10 pts each</td>
+        <td>Significant usability barrier (Missing image <code class="inline">alt</code>, missing form labels, missing/multiple <code class="inline">&lt;h1&gt;</code>).</td>
+      </tr>
+      <tr>
+        <td><strong>Moderate</strong></td>
+        <td>4 pts each</td>
+        <td>UX & SEO degradation (Generic link text like "click here", missing focus indicators).</td>
+      </tr>
+      <tr>
+        <td><strong>Minor</strong></td>
+        <td>1 pt each</td>
+        <td>Optimization opportunity (Overuse of generic container <code class="inline">&lt;div&gt;</code> tags).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight-box">
+    <strong>Mathematical Scoring Formula:</strong><br>
+    • <code class="inline">Base Penalty = (Critical × 20) + (Major × 10) + (Moderate × 4) + (Minor × 1)</code><br>
+    • <code class="inline">Capped Penalty = Min(100, Base Penalty)</code><br>
+    • <code class="inline">Category Score = 100 - Capped Penalty</code><br>
+    • <strong>Overall Score = Round( (WCAG Score × 0.7) + (SEO Score × 0.3) )</strong>
+  </div>
+
+  <div class="page-break"></div>
+
+  <h2>5. 🛠️ Technical Challenges & Solutions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Challenge Experienced</th>
+        <th>Root Cause</th>
+        <th>Engineering Solution Implemented</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1. Request Blocking / 403 Forbidden</strong></td>
+        <td>Websites block default Node.js Axios User-Agent header.</td>
+        <td>Configured real Chrome <code class="inline">User-Agent</code> headers in Axios request config.</td>
+      </tr>
+      <tr>
+        <td><strong>2. Memory & UI Payload Bloat</strong></td>
+        <td>Pages with 100+ images generate massive issue arrays.</td>
+        <td>Implemented issue sampling (reporting first 5 instances with count summary).</td>
+      </tr>
+      <tr>
+        <td><strong>3. AI API Latency / Failures</strong></td>
+        <td>Hugging Face / OpenAI endpoints can timeout or fail.</td>
+        <td>Built a resilient fallback pipeline to a local rule engine yielding instant suggestions.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>6. 📝 Job Application Form Answers (Ready to Copy-Paste)</h2>
+  
+  <div class="qa-card">
+    <div class="q">Field 1: Project evidence and personal contribution</div>
+    <div class="a">"I personally built and worked on the core frontend and backend functionality of my projects, including React interfaces, Express REST APIs, DOM parsing engines, and AI-powered suggestion features. I also handled debugging, integration, and deployment of the applications."</div>
+  </div>
+
+  <div class="qa-card">
+    <div class="q">Field 2: A frontend bug you personally fixed (Recommended)</div>
+    <div class="a">"In my React audit dashboard app, navigating to the results page via react-router-dom worked fine, but performing a hard refresh caused a blank screen because useLocation().state lost its data payload. I fixed this by implementing a graceful fallback guard that checked for state availability, persisted audit data temporarily in sessionStorage, and allowed seamless re-hydration on refresh without crashing the UI."</div>
+  </div>
+
+  <h2>7. 🎯 Interviewer Rapid-Fire Q&A</h2>
+
+  <div class="qa-card">
+    <div class="q">Q1: Why did you choose Cheerio over Puppeteer?</div>
+    <div class="a">Cheerio executes in milliseconds with minimal CPU/RAM overhead because it parses HTML strings without rendering layout or executing JS. Puppeteer takes 3-5 seconds per request and requires high memory. Cheerio is ideal for fast static DOM audits.</div>
+  </div>
+
+  <div class="qa-card">
+    <div class="q">Q2: How does your tool handle Client-Side Rendered (CSR) SPAs?</div>
+    <div class="a">Currently, static HTML parsing gets the initial server response. For SPAs where content mounts dynamically via JS, raw HTML parsing has limitations. As part of future scope, integrating Puppeteer as an optional rendered-DOM parser solves this.</div>
+  </div>
+
+  <div class="qa-card">
+    <div class="q">Q3: How do you ensure your score never becomes negative?</div>
+    <div class="a">By capping the total penalty at 100 using <code class="inline">Math.min(100, basePenalty)</code> and enforcing lower bounds with <code class="inline">Math.max(0, 100 - cappedPenalty)</code>.</div>
+  </div>
+
+  <div class="footer-note">
+    Accessibility Analyzer Project - Comprehensive Interview & System Documentation
+  </div>
+
+</body>
+</html>

@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./page/HomePage";
 import ResultPage from "./page/ResultPage";
-import AiChatbot from "./components/AiChatbot";
 
 export default function App() {
   return (
@@ -11,7 +10,6 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/results" element={<ResultPage />} />
       </Routes>
-      <AiChatbot />
     </BrowserRouter>
   );
 }
