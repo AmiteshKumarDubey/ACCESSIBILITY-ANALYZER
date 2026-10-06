@@ -21,9 +21,11 @@ export function ThemeProvider({ children }) {
     if (theme === 'dark') {
       root.classList.add('dark');
       root.classList.remove('light');
+      root.setAttribute('data-theme', 'dark');
     } else {
       root.classList.remove('dark');
       root.classList.add('light');
+      root.setAttribute('data-theme', 'light');
     }
     localStorage.setItem('app-theme', theme);
   }, [theme]);

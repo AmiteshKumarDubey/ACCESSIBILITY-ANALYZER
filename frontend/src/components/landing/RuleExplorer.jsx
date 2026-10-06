@@ -87,7 +87,7 @@ export default function RuleExplorer() {
           name: 'Visible Focus Ring',
           why: 'Keyboard users rely on Tab key focus indicators to see which element is currently active.',
           badCode: `button:focus {\n  outline: none; /* Removes focus indicator ❌ */\n}`,
-          goodCode: `button:focus-visible {\n  outline: 3px solid #FFB800;\n  outline-offset: 2px;\n}`
+          goodCode: `button:focus-visible {\n  outline: 2px solid var(--focus);\n  outline-offset: 2px;\n}`
         },
         {
           id: 'missing-skip-link',
@@ -140,11 +140,11 @@ export default function RuleExplorer() {
   const currentCategoryObj = categories.find(c => c.name === activeCategory) || categories[0];
 
   return (
-    <section id="rules-checked" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+    <section id="rules-checked" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10 border-t border-[var(--border)]">
       
-      {/* Section Header with <= 2 pill labels */}
+      {/* Section Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border-color)] text-xs font-mono text-[var(--accent-amber)]">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-mono text-[var(--accent-text)]">
           <span>Rule Explorer</span>
         </div>
         <h2 className="font-['Plus_Jakarta_Sans',sans-serif] text-3xl sm:text-4xl font-bold text-[var(--text-main)] tracking-tight">
@@ -157,7 +157,7 @@ export default function RuleExplorer() {
 
       {/* Accessible Category Tabs with hidden scrollbar */}
       <div 
-        className="flex gap-2 overflow-x-auto pb-2 no-scrollbar border-b border-[var(--border-color)] max-w-5xl mx-auto"
+        className="flex gap-2 overflow-x-auto pb-2 no-scrollbar border-b border-[var(--border)] max-w-5xl mx-auto"
         role="tablist"
         aria-label="Inspection categories"
       >
@@ -170,7 +170,7 @@ export default function RuleExplorer() {
               aria-selected={isActive}
               aria-controls={`category-panel-${cat.name}`}
               onClick={() => setActiveCategory(cat.name)}
-              className={`px-4 py-2.5 rounded-xl font-mono text-xs font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[var(--accent-amber)] ${isActive ? 'bg-[var(--accent-amber)] text-black shadow-md' : 'bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-main)] border border-[var(--border-color)]'}`}
+              className={`px-4 py-2.5 rounded-xl font-mono text-xs font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer focus:outline-none ${isActive ? 'bg-[var(--accent)] text-[var(--on-accent)] shadow-md' : 'bg-[var(--bg-surface)] text-[var(--text-muted)] hover:text-[var(--text-main)] border border-[var(--border)]'}`}
             >
               <span>{cat.iconSvg}</span>
               <span>{cat.name}</span>
@@ -183,11 +183,11 @@ export default function RuleExplorer() {
       <div 
         id={`category-panel-${currentCategoryObj.name}`}
         role="tabpanel"
-        className="max-w-5xl mx-auto bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-2xl p-6 sm:p-8 space-y-8 shadow-sm"
+        className="max-w-5xl mx-auto bg-[var(--bg-surface)] border border-[var(--border)] rounded-2xl p-6 sm:p-8 space-y-8 shadow-sm"
       >
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--border-color)] pb-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[var(--border)] pb-4">
           <div className="flex items-center gap-3">
-            <span className="p-2.5 rounded-xl bg-[var(--accent-amber)]/10 text-[var(--accent-amber)]">
+            <span className="p-2.5 rounded-xl bg-[var(--accent)]/10 text-[var(--accent-text)]">
               {currentCategoryObj.iconSvg}
             </span>
             <div>
@@ -201,16 +201,16 @@ export default function RuleExplorer() {
           </div>
 
           {/* Bad vs Good Code Toggle */}
-          <div className="flex items-center gap-2 bg-[var(--bg-main)] p-1 rounded-xl border border-[var(--border-color)] font-mono text-xs">
+          <div className="flex items-center gap-2 bg-[var(--bg-main)] p-1 rounded-xl border border-[var(--border)] font-mono text-xs">
             <button
               onClick={() => setShowGoodCode(false)}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-colors ${!showGoodCode ? 'bg-[var(--color-issue)] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'}`}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer ${!showGoodCode ? 'bg-[var(--bad)] text-white' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'}`}
             >
               Bad Code
             </button>
             <button
               onClick={() => setShowGoodCode(true)}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-colors ${showGoodCode ? 'bg-[var(--color-pass)] text-black' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'}`}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer ${showGoodCode ? 'bg-[var(--good)] text-black' : 'text-[var(--text-muted)] hover:text-[var(--text-main)]'}`}
             >
               Good Code
             </button>
@@ -220,12 +220,12 @@ export default function RuleExplorer() {
         {/* Rules List */}
         <div className="space-y-6">
           {currentCategoryObj.rules.map((rule, idx) => (
-            <div key={idx} className="space-y-3 p-4 bg-[var(--bg-main)] border border-[var(--border-color)] rounded-xl">
+            <div key={idx} className="space-y-3 p-4 bg-[var(--bg-main)] border border-[var(--border)] rounded-xl">
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-base text-[var(--text-main)]">
                   {rule.name}
                 </span>
-                <span className="px-2.5 py-1 rounded bg-[var(--bg-surface)] border border-[var(--border-color)] font-mono text-xs font-bold text-[var(--accent-amber)]">
+                <span className="px-2.5 py-1 rounded bg-[var(--bg-surface)] border border-[var(--border)] font-mono text-xs font-bold text-[var(--accent-text)]">
                   {rule.criterion}
                 </span>
               </div>
@@ -238,7 +238,7 @@ export default function RuleExplorer() {
                 <div className="font-mono text-[11px] font-bold uppercase tracking-wider mb-1 text-[var(--text-muted)]">
                   {showGoodCode ? '✅ Recommended Solution Snippet' : '❌ Non-compliant Code Snippet'}
                 </div>
-                <pre className={`p-3.5 rounded-xl font-mono text-xs overflow-x-auto border ${showGoodCode ? 'bg-[var(--color-pass)]/10 border-[var(--color-pass)]/30 text-[var(--color-pass)]' : 'bg-[var(--color-issue)]/10 border-[var(--color-issue)]/30 text-[var(--color-issue)]'}`}>
+                <pre className={`p-3.5 rounded-xl font-mono text-xs overflow-x-auto border ${showGoodCode ? 'bg-[var(--good)]/10 border-[var(--good)]/30 text-[var(--good)]' : 'bg-[var(--bad)]/10 border-[var(--bad)]/30 text-[var(--bad)]'}`}>
                   {showGoodCode ? rule.goodCode : rule.badCode}
                 </pre>
               </div>

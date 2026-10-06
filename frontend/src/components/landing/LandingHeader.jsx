@@ -26,16 +26,16 @@ export default function LandingHeader({ onScanClick, onNavScroll }) {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 bg-[var(--bg-main)]/90 backdrop-blur-md border-b border-[var(--border-color)] text-[var(--text-main)] transition-colors">
+    <header className="sticky top-0 z-50 bg-[var(--bg-main)]/90 backdrop-blur-md border-b border-[var(--border)] text-[var(--text-main)] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
         
         {/* Brand Logo & Name */}
         <a 
           href="#main" 
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-          className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[var(--accent-amber)] rounded-xl p-1"
+          className="flex items-center gap-3 group focus:outline-none rounded-xl p-1"
         >
-          <div className="w-10 h-10 rounded-xl bg-[var(--accent-amber)] text-black flex items-center justify-center font-bold shadow-md shadow-[var(--accent-amber)]/10 group-hover:scale-105 transition-transform">
+          <div className="w-10 h-10 rounded-xl bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center font-bold shadow-md group-hover:scale-105 transition-transform">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
@@ -57,25 +57,25 @@ export default function LandingHeader({ onScanClick, onNavScroll }) {
         <nav className="hidden md:flex items-center gap-6 text-sm font-semibold text-[var(--text-muted)]" aria-label="Main Navigation">
           <button 
             onClick={() => onNavScroll && onNavScroll('hero-scan')} 
-            className="hover:text-[var(--accent-amber)] transition-colors focus:outline-none focus:text-[var(--accent-amber)]"
+            className="hover:text-[var(--accent-text)] transition-colors focus:outline-none focus:text-[var(--accent-text)] cursor-pointer"
           >
             Scan
           </button>
           <button 
             onClick={() => onNavScroll && onNavScroll('how-it-works')} 
-            className="hover:text-[var(--accent-amber)] transition-colors focus:outline-none focus:text-[var(--accent-amber)]"
+            className="hover:text-[var(--accent-text)] transition-colors focus:outline-none focus:text-[var(--accent-text)] cursor-pointer"
           >
             How it works
           </button>
           <button 
             onClick={() => onNavScroll && onNavScroll('rules-checked')} 
-            className="hover:text-[var(--accent-amber)] transition-colors focus:outline-none focus:text-[var(--accent-amber)]"
+            className="hover:text-[var(--accent-text)] transition-colors focus:outline-none focus:text-[var(--accent-text)] cursor-pointer"
           >
             Rules
           </button>
           <button 
             onClick={() => onNavScroll && onNavScroll('scoring-explained')} 
-            className="hover:text-[var(--accent-amber)] transition-colors focus:outline-none focus:text-[var(--accent-amber)]"
+            className="hover:text-[var(--accent-text)] transition-colors focus:outline-none focus:text-[var(--accent-text)] cursor-pointer"
           >
             Score Guide
           </button>
@@ -96,20 +96,20 @@ export default function LandingHeader({ onScanClick, onNavScroll }) {
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2.5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-surface)] text-[var(--text-main)] hover:bg-[var(--bg-surface-hover)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent-amber)]"
+            className="p-2.5 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-main)] hover:bg-[var(--bg-elevated)] transition-colors focus:outline-none cursor-pointer"
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
             title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? (
-              <svg className="w-4 h-4 text-[var(--accent-amber)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              <svg className="w-4 h-4 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
             ) : (
-              <svg className="w-4 h-4 text-[var(--accent-amber)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+              <svg className="w-4 h-4 text-[var(--accent-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
             )}
           </button>
 
           <button
             onClick={onScanClick}
-            className="px-5 py-2.5 rounded-xl bg-[var(--accent-amber)] text-black font-['Plus_Jakarta_Sans',sans-serif] font-bold text-sm hover:opacity-90 transition-all shadow-md flex items-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white"
+            className="px-5 py-2.5 rounded-xl bg-[var(--accent)] text-[var(--on-accent)] font-['Plus_Jakarta_Sans',sans-serif] font-bold text-sm hover:opacity-90 transition-all shadow-md flex items-center gap-2 cursor-pointer focus:outline-none"
           >
             <span>Scan a website</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -120,19 +120,19 @@ export default function LandingHeader({ onScanClick, onNavScroll }) {
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl border border-[var(--border-color)] bg-[var(--bg-surface)] text-[var(--text-main)]"
+            className="p-2 rounded-xl border border-[var(--border)] bg-[var(--bg-surface)] text-[var(--text-main)] cursor-pointer"
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? (
-              <svg className="w-4 h-4 text-[var(--accent-amber)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+              <svg className="w-4 h-4 text-[var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
             ) : (
-              <svg className="w-4 h-4 text-[var(--accent-amber)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+              <svg className="w-4 h-4 text-[var(--accent-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
             )}
           </button>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 rounded-xl border border-[var(--border-color)] text-[var(--text-main)] hover:bg-[var(--bg-surface)] transition-colors focus:outline-none"
+            className="p-2 rounded-xl border border-[var(--border)] text-[var(--text-main)] hover:bg-[var(--bg-surface)] transition-colors focus:outline-none cursor-pointer"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             {mobileMenuOpen ? (
@@ -149,32 +149,32 @@ export default function LandingHeader({ onScanClick, onNavScroll }) {
       {mobileMenuOpen && (
         <div 
           ref={mobileMenuRef}
-          className="md:hidden border-b border-[var(--border-color)] bg-[var(--bg-main)] px-4 py-6 space-y-4"
+          className="md:hidden border-b border-[var(--border)] bg-[var(--bg-main)] px-4 py-6 space-y-4"
           role="dialog"
           aria-modal="true"
         >
           <nav className="flex flex-col space-y-3 font-semibold text-sm text-[var(--text-muted)]">
             <button 
               onClick={() => { setMobileMenuOpen(false); onNavScroll && onNavScroll('hero-scan'); }}
-              className="text-left py-2 hover:text-[var(--accent-amber)] transition-colors"
+              className="text-left py-2 hover:text-[var(--accent-text)] transition-colors cursor-pointer"
             >
               Scan
             </button>
             <button 
               onClick={() => { setMobileMenuOpen(false); onNavScroll && onNavScroll('how-it-works'); }}
-              className="text-left py-2 hover:text-[var(--accent-amber)] transition-colors"
+              className="text-left py-2 hover:text-[var(--accent-text)] transition-colors cursor-pointer"
             >
               How it works
             </button>
             <button 
               onClick={() => { setMobileMenuOpen(false); onNavScroll && onNavScroll('rules-checked'); }}
-              className="text-left py-2 hover:text-[var(--accent-amber)] transition-colors"
+              className="text-left py-2 hover:text-[var(--accent-text)] transition-colors cursor-pointer"
             >
               Rules
             </button>
             <button 
               onClick={() => { setMobileMenuOpen(false); onNavScroll && onNavScroll('scoring-explained'); }}
-              className="text-left py-2 hover:text-[var(--accent-amber)] transition-colors"
+              className="text-left py-2 hover:text-[var(--accent-text)] transition-colors cursor-pointer"
             >
               Score Guide
             </button>
@@ -190,7 +190,7 @@ export default function LandingHeader({ onScanClick, onNavScroll }) {
           <div className="pt-2">
             <button
               onClick={() => { setMobileMenuOpen(false); onScanClick && onScanClick(); }}
-              className="w-full py-3 rounded-xl bg-[var(--accent-amber)] text-black font-bold text-sm text-center shadow-md"
+              className="w-full py-3 rounded-xl bg-[var(--accent)] text-[var(--on-accent)] font-bold text-sm text-center shadow-md cursor-pointer"
             >
               Scan a website
             </button>

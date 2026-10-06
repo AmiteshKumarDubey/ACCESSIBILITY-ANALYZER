@@ -35,11 +35,11 @@ export default function LandingFAQ() {
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10 border-t border-[var(--border-color)]">
+    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10 border-t border-[var(--border)]">
       
-      {/* Section Header with <= 2 pill labels */}
+      {/* Section Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border-color)] text-xs font-mono text-[var(--accent-amber)]">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-mono text-[var(--accent-text)]">
           <span>FAQ</span>
         </div>
         <h2 className="font-['Plus_Jakarta_Sans',sans-serif] text-3xl sm:text-4xl font-bold text-[var(--text-main)] tracking-tight">
@@ -57,13 +57,13 @@ export default function LandingFAQ() {
           return (
             <div
               key={idx}
-              className="bg-[var(--bg-surface)] border border-[var(--border-color)] rounded-2xl overflow-hidden transition-colors"
+              className="bg-[var(--bg-surface)] border border-[var(--border)] rounded-2xl overflow-hidden transition-colors"
             >
               <button
                 onClick={() => toggleAccordion(idx)}
                 aria-expanded={isOpen}
                 aria-controls={`faq-answer-${idx}`}
-                className="w-full p-5 text-left flex items-center justify-between gap-4 font-['Plus_Jakarta_Sans',sans-serif] font-bold text-sm sm:text-base text-[var(--text-main)] hover:text-[var(--accent-amber)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent-amber)] cursor-pointer"
+                className="w-full p-5 text-left flex items-center justify-between gap-4 font-['Plus_Jakarta_Sans',sans-serif] font-bold text-sm sm:text-base text-[var(--text-main)] hover:text-[var(--accent-text)] transition-colors focus:outline-none cursor-pointer"
               >
                 <span>{faq.q}</span>
                 <svg
@@ -76,7 +76,7 @@ export default function LandingFAQ() {
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className={`transform transition-transform duration-200 shrink-0 text-[var(--accent-amber)] ${isOpen ? 'rotate-180' : ''}`}
+                  className={`transform transition-transform duration-200 shrink-0 text-[var(--accent-text)] ${isOpen ? 'rotate-180' : ''}`}
                   aria-hidden="true"
                 >
                   <path d="m6 9 6 6 6-6"/>
@@ -86,7 +86,7 @@ export default function LandingFAQ() {
               {isOpen && (
                 <div
                   id={`faq-answer-${idx}`}
-                  className="px-5 pb-5 pt-1 text-xs sm:text-sm text-[var(--text-muted)] font-medium leading-relaxed border-t border-[var(--border-color)] animate-in fade-in duration-150"
+                  className="px-5 pb-5 pt-1 text-xs sm:text-sm text-[var(--text-muted)] font-medium leading-relaxed border-t border-[var(--border)] animate-in fade-in duration-150"
                 >
                   {faq.a}
                 </div>

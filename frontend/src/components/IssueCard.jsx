@@ -4,7 +4,6 @@ import IssueHelp from './IssueHelp';
 export default function IssueCard({ issue }) {
   const [showHelp, setShowHelp] = useState(false);
   
-  // Determine severity based on issue ID
   const getSeverity = (id) => {
     const idLower = (id || "").toLowerCase();
     if (
@@ -29,57 +28,89 @@ export default function IssueCard({ issue }) {
 
   const severity = getSeverity(issue.id);
   const severityConfig = {
-    critical: { topBorder: "border-t-red-500", badge: "bg-red-50 text-red-600 border border-red-100", icon: "🔴", iconBg: "bg-red-50 border border-red-100" },
-    major: { topBorder: "border-t-orange-400", badge: "bg-orange-50 text-orange-600 border border-orange-100", icon: "🟠", iconBg: "bg-orange-50 border border-orange-100" },
-    minor: { topBorder: "border-t-blue-500", badge: "bg-blue-50 text-blue-600 border border-blue-100", icon: "🔵", iconBg: "bg-blue-50 border border-blue-100" }
+    critical: {
+      topBorder: "border-t-[var(--bad)]",
+      badge: "bg-[var(--bad)]/10 text-[var(--bad)] border border-[var(--bad)]/30",
+      iconSvg: (
+        <svg className="w-4 h-4 text-[var(--bad)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" strokeWidth="2.5" />
+          <line x1="12" y1="8" x2="12" y2="12" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="12" y1="16" x2="12.01" y2="16" strokeWidth="3" strokeLinecap="round" />
+        </svg>
+      ),
+      label: "Critical"
+    },
+    major: {
+      topBorder: "border-t-[var(--warn)]",
+      badge: "bg-[var(--warn)]/10 text-[var(--warn-text)] border border-[var(--warn)]/30",
+      iconSvg: (
+        <svg className="w-4 h-4 text-[var(--warn-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      ),
+      label: "Major"
+    },
+    minor: {
+      topBorder: "border-t-[var(--good)]",
+      badge: "bg-[var(--good)]/10 text-[var(--good)] border border-[var(--good)]/30",
+      iconSvg: (
+        <svg className="w-4 h-4 text-[var(--good)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10" strokeWidth="2.5" />
+          <line x1="12" y1="16" x2="12" y2="12" strokeWidth="2.5" strokeLinecap="round" />
+          <line x1="12" y1="8" x2="12.01" y2="8" strokeWidth="3" strokeLinecap="round" />
+        </svg>
+      ),
+      label: "Minor"
+    }
   };
 
   const config = severityConfig[severity];
 
   return (
-    <div className={`bg-white border border-gray-100 border-t-4 ${config.topBorder} p-6 rounded-3xl shadow-[0_4px_20px_rgb(0,0,0,0.04)] hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 flex flex-col h-full`}>
+    <div className={`bg-[var(--bg-surface)] border border-[var(--border)] border-t-4 ${config.topBorder} p-6 rounded-3xl shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full`}>
       
       {/* Header */}
       <div className="flex items-start justify-between mb-4 gap-3">
         <div className="flex items-center gap-3 flex-1 min-w-0">
-          <div className={`w-10 h-10 ${config.iconBg} rounded-full flex items-center justify-center text-lg shrink-0 shadow-sm`}>
-            {config.icon}
+          <div className="w-9 h-9 rounded-full bg-[var(--bg-main)] border border-[var(--border)] flex items-center justify-center shrink-0">
+            {config.iconSvg}
           </div>
-          <h3 className="font-black text-[15px] text-[#0a1024] leading-tight word-break line-clamp-2">
+          <h3 className="font-extrabold text-base text-[var(--text-main)] leading-tight word-break line-clamp-2">
             {issue.id?.replace(/-/g, " ").toUpperCase()}
           </h3>
         </div>
       </div>
 
-      {/* Badge */}
+      {/* Badge with icon + text + color */}
       <div className="mb-5">
-        <span className={`${config.badge} px-3 py-1 rounded-md text-[11px] font-black uppercase tracking-widest shadow-sm`}>
-          {severity}
+        <span className={`${config.badge} px-3 py-1 rounded-md text-[11px] font-extrabold uppercase tracking-widest inline-flex items-center gap-1.5`}>
+          {config.iconSvg}
+          <span>{config.label} Issue</span>
         </span>
       </div>
 
       {/* Description */}
-      <p className="text-[#4b5563] text-sm leading-relaxed mb-5 line-clamp-3 font-medium">{issue.desc}</p>
+      <p className="text-[var(--text-muted)] text-sm leading-relaxed mb-5 font-medium">{issue.desc}</p>
 
       {/* Location */}
       {issue.location && (
-        <div className="mb-4 p-3 bg-gray-50 border border-gray-100 rounded-xl">
-          <p className="text-gray-400 text-[11px] font-bold tracking-widest mb-1.5 uppercase flex items-center gap-1.5">
+        <div className="mb-4 p-3 bg-[var(--bg-main)] border border-[var(--border)] rounded-xl">
+          <p className="text-[var(--text-muted)] text-[11px] font-bold tracking-widest mb-1.5 uppercase flex items-center gap-1.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
             Location
           </p>
-          <p className="text-[#0a1024] font-mono break-all text-[12px] line-clamp-1 font-semibold">{issue.location}</p>
+          <p className="text-[var(--text-main)] font-mono break-all text-[12px] line-clamp-1 font-semibold">{issue.location}</p>
         </div>
       )}
 
       {/* Code Snippet */}
       {issue.snippet && (
-        <div className="mb-4 p-3 bg-gray-50 border border-gray-100 rounded-xl overflow-hidden">
-          <p className="text-gray-400 text-[11px] font-bold tracking-widest mb-1.5 uppercase flex items-center gap-1.5">
+        <div className="mb-4 p-3 bg-[var(--bg-main)] border border-[var(--border)] rounded-xl overflow-hidden">
+          <p className="text-[var(--text-muted)] text-[11px] font-bold tracking-widest mb-1.5 uppercase flex items-center gap-1.5">
             <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
             Snippet
           </p>
-          <pre className="bg-white p-3 rounded-lg text-xs text-gray-600 overflow-auto max-h-24 border border-gray-200 font-mono shadow-inner">
+          <pre className="bg-[var(--bg-surface)] p-3 rounded-lg text-xs text-[var(--text-main)] overflow-auto max-h-24 border border-[var(--border)] font-mono">
             {issue.snippet.slice(0, 150)}
           </pre>
         </div>
@@ -88,10 +119,10 @@ export default function IssueCard({ issue }) {
       <div className="grow"></div>
 
       {/* Footer */}
-      <div className="mt-4 pt-5 border-t border-gray-100 flex justify-end">
+      <div className="mt-4 pt-5 border-t border-[var(--border)] flex justify-end">
         <button
           onClick={() => setShowHelp(true)}
-          className="text-white bg-[#0047ff] hover:bg-[#0038cc] shadow-md shadow-blue-500/20 px-5 py-2.5 rounded-xl text-[13px] font-bold transition-all flex items-center gap-2"
+          className="text-[var(--on-accent)] bg-[var(--accent)] hover:opacity-90 shadow-md px-5 py-2.5 rounded-xl text-[13px] font-bold transition-all flex items-center gap-2 cursor-pointer"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
           Learn More

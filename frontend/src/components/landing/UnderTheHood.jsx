@@ -17,12 +17,12 @@ export default function UnderTheHood() {
   ];
 
   return (
-    <section id="limitations-note" className="py-16 bg-[var(--bg-main)] text-[var(--text-main)] transition-colors border-t border-[var(--border-color)]">
+    <section id="limitations-note" className="py-16 bg-[var(--bg-main)] text-[var(--text-main)] transition-colors border-t border-[var(--border)]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header with <= 2 pills */}
+        {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border-color)] text-xs font-mono text-[var(--accent-amber)] mb-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-mono text-[var(--accent-text)] mb-3">
             <span>Scanner Scope</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-[var(--text-main)] mb-3">
@@ -38,10 +38,10 @@ export default function UnderTheHood() {
           {limitations.map((item, idx) => (
             <div 
               key={idx} 
-              className="p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border-color)] flex flex-col justify-between"
+              className="p-5 rounded-xl bg-[var(--bg-surface)] border border-[var(--border)] flex flex-col justify-between"
             >
               <div>
-                <div className="w-8 h-8 rounded-lg bg-[var(--accent-amber)]/10 text-[var(--accent-amber)] font-bold flex items-center justify-center text-xs mb-3 font-mono">
+                <div className="w-8 h-8 rounded-lg bg-[var(--accent)]/10 text-[var(--accent-text)] font-bold flex items-center justify-center text-xs mb-3 font-mono">
                   0{idx + 1}
                 </div>
                 <h3 className="text-sm font-bold text-[var(--text-main)] mb-2">

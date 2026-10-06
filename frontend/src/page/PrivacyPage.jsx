@@ -10,7 +10,7 @@ export default function PrivacyPage() {
       
       <main id="main" className="flex-1 max-w-4xl mx-auto px-4 py-12 w-full">
         <nav aria-label="Breadcrumb" className="mb-6">
-          <Link to="/" className="text-xs text-[var(--text-muted)] hover:text-[var(--accent-amber)] transition-colors">
+          <Link to="/" className="text-xs text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors">
             ← Back to Home
           </Link>
         </nav>
@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         </p>
 
         <div className="space-y-8 text-sm leading-relaxed text-[var(--text-muted)]">
-          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border-color)]">
+          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-main)] mb-3">1. What Data We Process</h2>
             <p className="mb-2">
               Accessibility Analyzer is designed with privacy by default. When you submit a URL for inspection:
@@ -33,7 +33,7 @@ export default function PrivacyPage() {
             </ul>
           </section>
 
-          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border-color)]">
+          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-main)] mb-3">2. Local Browser Storage</h2>
             <p className="mb-2">
               The application uses your browser's <code>localStorage</code> solely for:
@@ -47,14 +47,14 @@ export default function PrivacyPage() {
             </p>
           </section>
 
-          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border-color)]">
+          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-main)] mb-3">3. Automated Audits Disclaimer</h2>
             <p>
               Audits are strictly automated static analyses of server-rendered HTML. Automated tools detect roughly 30%–40% of WCAG criteria. They do not constitute legal advice, official compliance certification, or a guarantee against legal claims.
             </p>
           </section>
 
-          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border-color)]">
+          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-main)] mb-3">4. Contact & Code</h2>
             <p>
               This is an open resume portfolio project. You can inspect the source code on{' '}
@@ -62,7 +62,7 @@ export default function PrivacyPage() {
                 href="https://github.com/AmiteshKumarDubey/ACCESSIBILITY-ANALYZER" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-[var(--accent-amber)] underline"
+                className="text-[var(--accent-text)] underline"
               >
                 GitHub
               </a>.

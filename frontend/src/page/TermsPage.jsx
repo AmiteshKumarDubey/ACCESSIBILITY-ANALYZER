@@ -10,7 +10,7 @@ export default function TermsPage() {
       
       <main id="main" className="flex-1 max-w-4xl mx-auto px-4 py-12 w-full">
         <nav aria-label="Breadcrumb" className="mb-6">
-          <Link to="/" className="text-xs text-[var(--text-muted)] hover:text-[var(--accent-amber)] transition-colors">
+          <Link to="/" className="text-xs text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors">
             ← Back to Home
           </Link>
         </nav>
@@ -21,14 +21,14 @@ export default function TermsPage() {
         </p>
 
         <div className="space-y-8 text-sm leading-relaxed text-[var(--text-muted)]">
-          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border-color)]">
+          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-main)] mb-3">1. Scope of Service</h2>
             <p>
               Accessibility Analyzer provides automated static inspections of publicly accessible web pages for WCAG 2.2 AA guidelines and search engine optimization parameters.
             </p>
           </section>
 
-          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border-color)]">
+          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-main)] mb-3">2. Limitations of Automated Audits</h2>
             <ul className="list-disc pl-5 space-y-2">
               <li>
@@ -43,14 +43,14 @@ export default function TermsPage() {
             </ul>
           </section>
 
-          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border-color)]">
+          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-main)] mb-3">3. Acceptable Use</h2>
             <p>
               You agree to use this tool for lawful web auditing and development purposes only. Automated abuse, denial-of-service attempts, or scanning private internal network hosts is prohibited and blocked by server security.
             </p>
           </section>
 
-          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border-color)]">
+          <section className="bg-[var(--bg-surface)] p-6 rounded-xl border border-[var(--border)]">
             <h2 className="text-lg font-semibold text-[var(--text-main)] mb-3">4. Disclaimer of Warranties</h2>
             <p>
               The service is provided "as is" without warranty of any kind. The project author assumes no liability for errors, omitted accessibility checks, or site decisions made based on audit results.

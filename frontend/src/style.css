@@ -1,28 +1,44 @@
 @import "tailwindcss";
 
 @layer base {
-  :root {
+  :root, html.dark, [data-theme="dark"] {
     --bg-main: #0B0F1A;
     --bg-surface: #121829;
-    --bg-surface-hover: #192238;
-    --border-color: #1E293B;
+    --bg-elevated: #1A2238;
+    --bg-hero: radial-gradient(ellipse at top, rgba(255, 184, 0, 0.08) 0%, rgba(11, 15, 26, 0) 70%), #0B0F1A;
+    --border: #596C98;
     --text-main: #F4F6FB;
-    --text-muted: #94A3B8;
-    --accent-amber: #FFB800;
-    --color-pass: #2DD4BF;
-    --color-issue: #FF5C5C;
+    --text-muted: #A3AEC9;
+    --accent: #FFB800;
+    --on-accent: #0B0F1A;
+    --accent-text: #FFB800;
+    --good: #2DD4BF;
+    --warn: #FFB800;
+    --warn-text: #FFB800;
+    --warn-ring: #FFB800;
+    --bad: #FF5C5C;
+    --ring-track: #263049;
+    --focus: #FFB800;
   }
 
-  html.light {
-    --bg-main: #F8FAFC;
+  html.light, [data-theme="light"] {
+    --bg-main: #FFF8EF;
     --bg-surface: #FFFFFF;
-    --bg-surface-hover: #F1F5F9;
-    --border-color: #E2E8F0;
-    --text-main: #0F172A;
-    --text-muted: #475569;
-    --accent-amber: #D97706;
-    --color-pass: #0D9488;
-    --color-issue: #DC2626;
+    --bg-elevated: #FFF1DC;
+    --bg-hero: linear-gradient(180deg, #FFEFD6 0%, #FFF8EF 100%);
+    --border: #9B7440;
+    --text-main: #1B1410;
+    --text-muted: #5E5247;
+    --accent: #FFB800;
+    --on-accent: #1B1410;
+    --accent-text: #A24B05;
+    --good: #0F766E;
+    --warn: #A24B05;
+    --warn-text: #A24B05;
+    --warn-ring: #D97706;
+    --bad: #C62828;
+    --ring-track: #F0DDBF;
+    --focus: #A24B05;
   }
 
   body {
@@ -30,6 +46,11 @@
     color: var(--text-main);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--focus) !important;
+    outline-offset: 2px !important;
   }
 }
 

@@ -32,11 +32,11 @@ export default function ScanPipeline() {
   ];
 
   return (
-    <section id="how-it-works" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+    <section id="how-it-works" className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12 border-t border-[var(--border)]">
       
-      {/* Section Header with <= 2 pill labels */}
+      {/* Section Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border-color)] text-xs font-mono text-[var(--accent-amber)]">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--bg-surface)] border border-[var(--border)] text-xs font-mono text-[var(--accent-text)]">
           <span>Inspection Pipeline</span>
         </div>
         <h2 className="font-['Plus_Jakarta_Sans',sans-serif] text-3xl sm:text-4xl font-bold text-[var(--text-main)] tracking-tight">
@@ -56,19 +56,19 @@ export default function ScanPipeline() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: idx * 0.1 }}
-            className="bg-[var(--bg-surface)] border border-[var(--border-color)] hover:border-[var(--accent-amber)] p-6 rounded-2xl space-y-4 shadow-sm transition-all group"
+            className="bg-[var(--bg-surface)] border border-[var(--border)] hover:border-[var(--accent)] p-6 rounded-2xl space-y-4 shadow-sm transition-all group"
           >
             <div className="flex items-center justify-between">
-              <span className="font-mono text-2xl font-bold text-[var(--accent-amber)]">
+              <span className="font-mono text-2xl font-bold text-[var(--accent-text)]">
                 {item.step}
               </span>
-              <span className="px-2 py-0.5 rounded bg-[var(--bg-main)] border border-[var(--border-color)] font-mono text-[10px] text-[var(--color-pass)] font-semibold">
+              <span className="px-2 py-0.5 rounded bg-[var(--bg-main)] border border-[var(--border)] font-mono text-[10px] text-[var(--good)] font-semibold">
                 {item.category}
               </span>
             </div>
 
             <div className="space-y-2">
-              <h3 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-base text-[var(--text-main)] group-hover:text-[var(--accent-amber)] transition-colors">
+              <h3 className="font-['Plus_Jakarta_Sans',sans-serif] font-bold text-base text-[var(--text-main)] group-hover:text-[var(--accent-text)] transition-colors">
                 {item.title}
               </h3>
               <p className="text-xs text-[var(--text-muted)] leading-relaxed font-medium">
