@@ -61,6 +61,179 @@ async function verifyDNSHost(hostname) {
   return true;
 }
 
+function extractScreenReaderView($) {
+  const announcements = [];
+  let headingLevelHistory = 0;
+
+  $('body *').each((_, el) => {
+    if (announcements.length >= 120) return false;
+
+    const $el = $(el);
+    const tagName = el.tagName ? el.tagName.toLowerCase() : '';
+
+    if (['script', 'style', 'noscript', 'head', 'svg', 'path', 'meta', 'link'].includes(tagName)) {
+      return;
+    }
+
+    // 1. Landmarks
+    const role = $el.attr('role');
+    const ariaLabel = $el.attr('aria-label') || $el.attr('aria-labelledby') || '';
+    if (['header', 'nav', 'main', 'footer', 'aside'].includes(tagName) || ['navigation', 'main', 'banner', 'contentinfo', 'search', 'complementary'].includes(role)) {
+      const landmarkType = role || tagName;
+      announcements.push({
+        id: `sr-${announcements.length + 1}`,
+        type: 'landmark',
+        tag: tagName,
+        text: ariaLabel ? `${landmarkType.toUpperCase()} landmark ("${ariaLabel}")` : `${landmarkType.toUpperCase()} landmark`,
+        status: 'ok',
+        reason: null
+      });
+      return;
+    }
+
+    // 2. Headings
+    if (/^h[1-6]$/.test(tagName)) {
+      const level = parseInt(tagName.replace('h', ''), 10);
+      const text = $el.text().trim();
+      let status = 'ok';
+      let reason = null;
+
+      if (!text) {
+        status = 'problem';
+        reason = 'Empty heading tag (contains no visible text)';
+      } else if (headingLevelHistory > 0 && level > headingLevelHistory + 1) {
+        status = 'problem';
+        reason = `Skipped heading level from H${headingLevelHistory} directly to H${level}`;
+      }
+
+      if (text) headingLevelHistory = level;
+
+      announcements.push({
+        id: `sr-${announcements.length + 1}`,
+        type: 'heading',
+        level,
+        tag: tagName,
+        text: text ? `H${level}: "${text}"` : `H${level}: [Empty heading]`,
+        status,
+        reason
+      });
+      return;
+    }
+
+    // 3. Links
+    if (tagName === 'a') {
+      const href = $el.attr('href') || '#';
+      const text = $el.text().trim() || $el.find('img').attr('alt') || $el.attr('aria-label') || '';
+      let status = 'ok';
+      let reason = null;
+
+      if (!text) {
+        status = 'problem';
+        reason = 'Empty link (lacks accessible text name or image alt)';
+      } else if (['click here', 'here', 'read more', 'more', 'link'].includes(text.toLowerCase())) {
+        status = 'problem';
+        reason = 'Uninformative link text (does not describe destination)';
+      }
+
+      announcements.push({
+        id: `sr-${announcements.length + 1}`,
+        type: 'link',
+        tag: 'a',
+        href: href.length > 40 ? href.slice(0, 40) + '...' : href,
+        text: text ? `Link: "${text}"` : 'Link: [Unlabeled]',
+        status,
+        reason
+      });
+      return;
+    }
+
+    // 4. Images
+    if (tagName === 'img') {
+      const alt = $el.attr('alt');
+      let status = 'ok';
+      let reason = null;
+
+      if (alt === undefined) {
+        status = 'problem';
+        reason = 'Missing alt attribute (screen reader reads raw image filename)';
+      } else if (alt === '') {
+        status = 'ok';
+        reason = 'Decorative image (alt="") - skipped by screen reader';
+      }
+
+      announcements.push({
+        id: `sr-${announcements.length + 1}`,
+        type: 'image',
+        tag: 'img',
+        alt: alt ?? null,
+        text: alt === undefined ? 'Image: [Unlabeled image]' : alt === '' ? 'Image: [Decorative image]' : `Image: "${alt}"`,
+        status,
+        reason
+      });
+      return;
+    }
+
+    // 5. Buttons
+    if (tagName === 'button' || role === 'button') {
+      const text = $el.text().trim() || $el.attr('aria-label') || $el.attr('title') || '';
+      let status = 'ok';
+      let reason = null;
+
+      if (!text) {
+        status = 'problem';
+        reason = 'Unlabeled button (no accessible label for screen readers)';
+      }
+
+      announcements.push({
+        id: `sr-${announcements.length + 1}`,
+        type: 'button',
+        tag: tagName,
+        text: text ? `Button: "${text}"` : 'Button: [Unlabeled button]',
+        status,
+        reason
+      });
+      return;
+    }
+
+    // 6. Form controls
+    if (['input', 'select', 'textarea'].includes(tagName)) {
+      const inputType = $el.attr('type') || 'text';
+      if (['hidden', 'submit', 'button', 'image'].includes(inputType)) return;
+
+      const id = $el.attr('id');
+      const ariaLabel = $el.attr('aria-label') || '';
+      let labelText = '';
+      if (id) {
+        labelText = $(`label[for="${id}"]`).text().trim();
+      }
+      if (!labelText) {
+        labelText = $el.closest('label').text().trim();
+      }
+
+      const accessibleName = labelText || ariaLabel || $el.attr('placeholder') || '';
+      let status = 'ok';
+      let reason = null;
+
+      if (!accessibleName) {
+        status = 'problem';
+        reason = `Form ${tagName} (${inputType}) lacks an associated <label> or aria-label`;
+      }
+
+      announcements.push({
+        id: `sr-${announcements.length + 1}`,
+        type: 'form-control',
+        tag: tagName,
+        inputType,
+        text: accessibleName ? `Form input (${inputType}): "${accessibleName}"` : `Form input (${inputType}): [Unlabeled]`,
+        status,
+        reason
+      });
+    }
+  });
+
+  return announcements;
+}
+
 module.exports = async function runAudit(url) {
   let parsedUrl;
   try {
@@ -99,13 +272,10 @@ module.exports = async function runAudit(url) {
   const wcagResult = calculateScore(wcagIssues, 'wcag');
   const seoResult = calculateScore(seoIssues, 'seo');
 
-  // Precise overall calculation: 70% WCAG, 30% SEO
-  // WCAG is more important for accessibility
   const overall = Math.round(wcagResult.score * 0.7 + seoResult.score * 0.3);
 
   console.log('➡️ scoring done:', { wcag: wcagResult.score, seo: seoResult.score, overall });
 
-  // Generate page ranking and grading
   const pageRanking = generatePageRanking(
     wcagResult.score, 
     seoResult.score, 
@@ -113,7 +283,6 @@ module.exports = async function runAudit(url) {
     seoResult.breakdown
   );
 
-  // Build audit object to pass to suggestion engine
   const auditForSuggestions = {
     url,
     wcag: { score: wcagResult.score, breakdown: wcagResult.breakdown, issues: wcagIssues },
@@ -127,6 +296,8 @@ module.exports = async function runAudit(url) {
     console.error('Failed to generate suggestions:', e.message || e);
     suggestions = [];
   }
+
+  const screenReaderView = extractScreenReaderView($);
 
   return {
     url,
@@ -146,6 +317,7 @@ module.exports = async function runAudit(url) {
       seoWeight: 30
     },
     ranking: pageRanking,
-    suggestions
+    suggestions,
+    screenReaderView
   };
 };

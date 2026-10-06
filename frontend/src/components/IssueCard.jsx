@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import IssueHelp from './IssueHelp';
 
-export default function IssueCard({ issue }) {
+export default function IssueCard({ issue, onExplainWithAi }) {
   const [showHelp, setShowHelp] = useState(false);
   
   const getSeverity = (id) => {
@@ -119,10 +119,22 @@ export default function IssueCard({ issue }) {
       <div className="grow"></div>
 
       {/* Footer */}
-      <div className="mt-4 pt-5 border-t border-[var(--border)] flex justify-end">
+      <div className="mt-4 pt-5 border-t border-[var(--border)] flex items-center justify-between gap-2">
+        {onExplainWithAi && (
+          <button
+            onClick={() => onExplainWithAi(issue)}
+            className="text-[var(--accent-text)] bg-[var(--bg-main)] hover:bg-[var(--bg-elevated)] border border-[var(--border)] px-3 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 focus:ring-2 focus:ring-[var(--focus)] focus:outline-none"
+            title="Ask AI Assistant about this issue"
+          >
+            <svg className="w-4 h-4 text-[var(--accent-text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span>Explain with AI</span>
+          </button>
+        )}
         <button
           onClick={() => setShowHelp(true)}
-          className="text-[var(--on-accent)] bg-[var(--accent)] hover:opacity-90 shadow-md px-5 py-2.5 rounded-xl text-[13px] font-bold transition-all flex items-center gap-2 cursor-pointer"
+          className="text-[var(--on-accent)] bg-[var(--accent)] hover:opacity-90 shadow-md px-4 py-2 rounded-xl text-xs sm:text-[13px] font-bold transition-all flex items-center gap-1.5 cursor-pointer focus:ring-2 focus:ring-[var(--focus)] focus:outline-none"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
           Learn More
